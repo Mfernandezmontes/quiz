@@ -9,7 +9,16 @@ router.get('/', function(req, res, next) {
   res.render('index', { title:  'QUIZ' });
 });
 
+// GET /quizes/question
 router.get('/quizes/question', quizController.question);
+
+// GET /quizes/answer
 router.get('/quizes/answer', quizController.answer);
+
+// GET /autores
+router.get('/author', function(req,res,next){
+    //Vista autores
+    res.render('author');
+})
 
 module.exports = router;
