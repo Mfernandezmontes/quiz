@@ -7,7 +7,7 @@
 
 ### Y esto.. como funciona? ###
 
-* clonar / forkerar
+* clonar / forkear
 * npm install
 * bower install (Contiene bootstrap)
 
