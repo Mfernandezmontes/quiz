@@ -14,4 +14,4 @@
 ### En caso de necesidad? ###
 
 * info@byteman.tk
-* www.byteman.tk\contacto
+* http://www.byteman.tk/contacto/
