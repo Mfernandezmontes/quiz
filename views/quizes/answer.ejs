@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>quiz</title>
-</head>
-<body>
-    <h2>Quiz: el juego de las preguntas</h2>
-    <p><%= respuesta %></p>
-    <a href="/quizes/question">Intenelo otr vez</a>
-</body>
-</html>
+<br>
+<div class="col-lg-4">
+    <div class="<%= color %>">
+        <div class="panel-heading">
+            <%= respuesta %>
+        </div>
+        <div class="panel-body">
+            <p>LA RESPUESTA ES, <%= respuesta %></p>
+        </div>
+        <div class="panel-footer">
+            <a href="/quizes/question">Intenelo otra vez</a>
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+</div>

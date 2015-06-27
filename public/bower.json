@@ -1,0 +1,24 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "authors": [
+    "adminlocal <mfernandezmontes@gmail.com>"
+  ],
+  "description": "Proyecto miradax",
+  "keywords": [
+    "nada"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.3.0",
+    "metisMenu": "~2.0.2"
+  }
+}
