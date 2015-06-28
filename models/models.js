@@ -1,9 +1,10 @@
 /**
  * Created by adminlocal on 28/06/15.
  */
+var path = require('path');
 
 //Carga el modelo ORM
-var Sequelize = require('sequielize');
+var Sequelize = require('sequelize');
 
 // Usa la bbdd de SQLite
 var sequelize = new Sequelize(null,null,null, {dialect: "sqlite", storage: "quiz.sqlite"} );
@@ -18,10 +19,10 @@ sequelize.sync().success(function(){
     // sucess() ejecuta el manejador una vez creada la tabla
     Quiz.count.success(function(count){
         if(count === 0){ // la tabla se inicializa solo si esta vacia
-            Quiz.create({ pregunta: 'La tabla esta vacia',
-                          respuesta: 'si'
+            Quiz.create({ pregunta: 'Capital de Italia',
+                          respuesta: 'Roma'
             })
-                .success(function(){console.log('Base de datos inicializada')})
+            .success(function(){console.log('Base de datos inicializada')})
         }
     })
 })
