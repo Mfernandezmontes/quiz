@@ -9,6 +9,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title:  'QUIZ' });
 });
 
+//Autoload , si existe quizId ese parametro en la ruta
+router.params('quizId', quizController.load)
+
 // GET quizes = busca todos
 router.get('/quizes', quizController.index)
 
@@ -17,14 +20,6 @@ router.get('/quizes/:quizId(//d+)', quizController.show);
 
 // GET quizes id answer
 router.get('/quizes/:quizId(//d+)/answer', quizController.answer);
-
-/*
-// GET /quizes/question
-router.get('/quizes/question', quizController.question);
-
-// GET /quizes/answer
-router.get('/quizes/answer', quizController.answer);
-*/
 
 // GET /autores
 router.get('/author', function(req,res,next){
