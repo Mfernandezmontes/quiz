@@ -3,26 +3,47 @@
  */
 var path = require('path');
 
+
+var url = process.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/)
+var DB_name   = (url[6]||null);
+var user      = (url[2]||null);
+var pwd       = (url[6]||null);
+var protocol = (url[6]||null);
+var dialect   = (url[6]||null);
+var port      = (url[6]||null);
+var host      = (url[6]||null);
+//var storage   = process.env.DATABASE_STORAGE; //solo para sqlite
+
+
 //Carga el modelo ORM
 var Sequelize = require('sequelize');
 
-// Usa la bbdd de SQLite
-var sequelize = new Sequelize(null,null,null, {dialect: "sqlite", storage: "quiz.sqlite"} );
+var sequelize = new Sequelize(DB_name, user,pwd,
+    {   dialect : dialect,
+        protocol : protocol,
+        port : port,
+        host : host,
+        omitNull : true
+    })
 
-// Importa la definicion de la tabla Quiz en el quiz.js
-var Quiz = sequelize.import(path.join(__dirname,'quiz'));
+//Importar la defincion de la tabla
+var quiz_path = path.join(__dirname,'quiz');
+var Quiz = sequelize.import(quiz_path);
 
 exports.Quiz = Quiz; //Exporta la definicion
 
 //sequelize.sync() crea e inicializa la table de preguntas en DB
-sequelize.sync().success(function(){
+sequelize.sync().then(function(){
     // sucess() ejecuta el manejador una vez creada la tabla
-    Quiz.count.success(function(count){
+    Quiz.count.then(function(count){
         if(count === 0){ // la tabla se inicializa solo si esta vacia
             Quiz.create({ pregunta: 'Capital de Italia',
                           respuesta: 'Roma'
+            });
+            Quiz.create({ pregunta: 'Capital de Portugal',
+                          respuesta: 'Roma'
             })
-            .success(function(){console.log('Base de datos inicializada')})
+            .then(function(){console.log('Base de datos inicializada')})
         }
     })
 })
