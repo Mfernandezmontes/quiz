@@ -3,15 +3,15 @@
  */
 var path = require('path');
 
-
-var url = process.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/)
+// TODO: mirar bien el problema de las variables de entrono
+var url = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/)
 var DB_name   = (url[6]||null);
 var user      = (url[2]||null);
-var pwd       = (url[6]||null);
-var protocol = (url[6]||null);
-var dialect   = (url[6]||null);
-var port      = (url[6]||null);
-var host      = (url[6]||null);
+var pwd       = (url[3]||null);
+var protocol =  (url[1]||null);
+var dialect   = (url[1]||null);
+var port      = (url[5]||null);
+var host      = (url[4]||null);
 //var storage   = process.env.DATABASE_STORAGE; //solo para sqlite
 
 
