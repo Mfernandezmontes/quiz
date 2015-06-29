@@ -9,9 +9,9 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-6">
-                        <form role="form" method="get" action="/quizes/answer">
+                        <form role="form" method="get" action="/quizes/<%= quiz.id %>/answer">
                             <div class="form-group">
-                                <h2><%= pregunta %></h2>
+                                <h2><%= quiz.pregunta %></h2>
                                 <input name="respuesta" type="text" value="Responda aqui" class="form-control">
                                 <br>
                                 <button type="submit" class="btn btn-primary">Enviar</button>

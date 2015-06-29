@@ -1,19 +1,29 @@
 var models = require('../models/models')
 
-// GET quizes/question
-exports.question = function(req,res){
-    models.Quiz.findAll().success(function(quiz){
-        res.render('quizes/question', { pregunta : quiz[0].pregunta })
+// GET quizes/:id
+//busca en bbdd por id y manda a la vista el objeto quiz
+
+exports.show = function(req,res){
+    models.Quiz.find(req.params.quizId).then(function(quiz){
+        res.render('quizes/show', { quiz: quiz })
     })
 };
 
-// GET quizes/answer
+// GET quizes/:id/answer
 exports.answer = function(req,res) {
-    models.Quiz.findAll().success(function (quiz) {
-        if (req.query.respuesta === quiz[0].respuesta) {
-            res.render('quizes/answer', {respuesta: 'Correcto', color: 'panel panel-green'});
+    models.Quiz.find(req.params.quizId).then(function (quiz) {
+        if (req.query.respuesta === quiz.respuesta) {
+            res.render('quizes/answer', {quiz: quiz, respuesta: 'Correcto', color: 'panel panel-green'});
         } else {
-            res.render('quizes/answer', {respuesta: 'Incorrecto', color: 'panel panel-red'});
+            res.render('quizes/answer', {quiz: quiz, respuesta: 'Incorrecto', color: 'panel panel-red'});
         }
+    })
+}
+
+
+// GET quizes
+exports.index = function(req,res){
+    models.Quiz.findAll().then(function(quizes){
+        res.render('quizes/indes')
     })
 }
