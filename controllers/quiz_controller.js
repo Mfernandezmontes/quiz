@@ -12,11 +12,19 @@ exports.load = function(req,res,next,quizId){
 }
 
 
+
+// GET quizes
+exports.index = function(req,res){
+    models.Quiz.findAll().then(
+        function(quizes){
+            res.render('quizes/index.ejs',{ quizes: quizes})
+        }).catch(function(error){ next(error)});
+}
+
 // GET quizes/:id
 //busca en bbdd por id y manda a la vista el objeto quiz
-
 exports.show = function(req,res){
-        res.render('quizes/show', { quiz: req.quiz })
+        res.render('quizes/show.ejs', { quiz: req.quiz })
     }
 
 // GET quizes/:id/answer
@@ -27,14 +35,6 @@ exports.answer = function(req,res) {
             resultado = 'Correcto';
             color = 'panel panel-green';
         }
-        res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado, color: color});
+        res.render('quizes/answer.ejs', {quiz: req.quiz, respuesta: resultado, color: color});
     }
 
-
-// GET quizes
-exports.index = function(req,res){
-    models.Quiz.findAll().then(
-        function(quizes){
-        res.render('quizes/index.ejs',{ quizes: quizes})
-    }).catch(function(error){ next(error)});
-}
