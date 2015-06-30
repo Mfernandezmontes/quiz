@@ -5,6 +5,9 @@
 
 
 *.iml
+Procfile
+quiz.sqlite
+v8.log
 
 ## Directory-based project format:
 .idea/
