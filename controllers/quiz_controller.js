@@ -38,3 +38,12 @@ exports.answer = function(req,res) {
         res.render('quizes/answer.ejs', {quiz: req.quiz, respuesta: resultado, color: color});
     }
 
+// GET quizes/:search
+exports.search = function(res,req) {
+    search = '%' + req.query.search + '%'
+    models.Quiz.findAll({where: ["pregunta like ?", search]}).then(
+        function(quizes){
+            res.render('quizes/index.ejs',{ quizes: quizes})
+        }
+    ).catch(function(error){ next(error)});
+}

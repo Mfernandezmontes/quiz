@@ -27,6 +27,7 @@ router.get('/author', function(req,res,next){
     res.render('author');
 })
 
-
+//GET /quizes?search=texto_a_buscar
+router.get('/quizes/:search', quizController.search)
 
 module.exports = router;
