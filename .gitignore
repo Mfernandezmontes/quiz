@@ -9,6 +9,8 @@ Procfile
 quiz.sqlite
 v8.log
 npm-debug.log
+.env
+
 
 ## Directory-based project format:
 .idea/
