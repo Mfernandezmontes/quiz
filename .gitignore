@@ -9,6 +9,8 @@ Procfile
 quiz.sqlite
 v8.log
 npm-debug.log
+.env
+
 
 ## Directory-based project format:
 .idea/
@@ -16,7 +18,6 @@ node_modules/
 node_modules
 .idea
 /.idea
-public/bower_components
 
 # if you remove the above rule, at least ignore the following:
 
