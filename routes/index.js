@@ -5,28 +5,29 @@ var quizController = require('../controllers/quiz_controller')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  //    vista INDEX
-  res.render('index', { title:  'QUIZ' });
+    //    vista INDEX
+    res.render('index', { title:  'QUIZ' });
 });
 
 //Autoload , si existe quizId ese parametro en la ruta
-router.params('quizId', quizController.load)
+
+
+router.param('quizId', quizController.load)
 
 // GET quizes = busca todos
 router.get('/quizes', quizController.index)
 
 // GET quizes id = busca por id
-router.get('/quizes/:quizId(//d+)', quizController.show);
+router.get('/quizes/:quizId(\\d+)', quizController.show);
 
 // GET quizes id answer
-router.get('/quizes/:quizId(//d+)/answer', quizController.answer);
+router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 
 // GET /autores
 router.get('/author', function(req,res,next){
     //Vista autores
     res.render('author');
 })
-
 
 
 module.exports = router;
