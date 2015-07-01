@@ -14,11 +14,25 @@ exports.load = function(req,res,next,quizId){
 
 
 // GET quizes
+// GET quizes?search=search
 exports.index = function(req,res){
-    models.Quiz.findAll().then(
-        function(quizes){
-            res.render('quizes/index.ejs',{ quizes: quizes})
-        }).catch(function(error){ next(error)});
+
+    //Si no se ha ralizado buscqueda muestra todos
+    if(req.query.search === undefined){
+        models.Quiz.findAll().then(
+            function(quizes){
+                res.render('quizes/index.ejs',{ quizes: quizes })
+            }).catch(function(error){ next(error)});
+
+    //si la query lleva algun valor
+    }else{
+        var querySearch = '%' +  req.query.search + '%'
+        models.Quiz.findAll({where: ["pregunta like ?", querySearch]}).then(
+            function(quizes){
+                res.render('quizes/index.ejs',{ quizes: quizes })
+                querySearch = ''
+            }).catch(function(error){ next(error)});
+    }
 }
 
 // GET quizes/:id
@@ -38,12 +52,3 @@ exports.answer = function(req,res) {
         res.render('quizes/answer.ejs', {quiz: req.quiz, respuesta: resultado, color: color});
     }
 
-// GET quizes/:search
-exports.search = function(res,req) {
-    search = '%' + req.query.search + '%'
-    models.Quiz.findAll({where: ["pregunta like ?", search]}).then(
-        function(quizes){
-            res.render('quizes/index.ejs',{ quizes: quizes})
-        }
-    ).catch(function(error){ next(error)});
-}
