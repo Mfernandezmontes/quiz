@@ -65,9 +65,9 @@
     </nav>
     <!-- Page Content -->
     <div id="page-wrapper">
-        <%if (errors.length){ %>
-             <%for (var i in errors){ %>
-                <div class="alert alert-danger"><%= errors.message %> </div>
+        <% if (errors.length){ %>
+             <% for (var i in errors){ %>
+                <div class="alert alert-danger"><%= errors[i].message %> </div>
              <% } %>
        <% } %>
 

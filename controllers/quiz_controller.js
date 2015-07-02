@@ -65,15 +65,16 @@ exports.new = function(req,res){
 exports.create = function(req,res){
     var quiz = models.Quiz.build(req.body.quiz);
     //guarda en la bd campos pregunta y respuesta del quiz
+
     quiz.validate().then(
-        function(err){
-            if(err){
-                res.render('quizes/new',{quiz: quiz, errors: err.errors});
-            } else {
-                // Salva en bbdd
-                quiz.save({fields: ["pregunta", "respuesta"]})
-                    .then(function(){res.redirect('/quizes')});
-                    //Redireccion de HTTP (url relativo) lista de preguntas
+            function(err){
+                if(err){
+                    res.render('quizes/new', {quiz: quiz, errors: err.errors});
+                } else {
+                    // Salva en bbdd
+                    quiz.save({fields: ["pregunta", "respuesta"]})
+                        .then(function(){res.redirect('/quizes')});
+                        //Redireccion de HTTP (url relativo) lista de preguntas
             }
-        }
-    )}
+        })
+    }

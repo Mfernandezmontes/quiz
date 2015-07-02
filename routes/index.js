@@ -26,7 +26,7 @@ router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 // GET /autores
 router.get('/author', function(req,res,next){
     //Vista autores
-    res.render('author');
+    res.render('author', { errors: [] });
 })
 
 // GET quizes/new
