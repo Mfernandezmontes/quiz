@@ -1,12 +1,23 @@
-<label>Realize una busqueda</label>
-<!--utilizan notación pseudo JSON que permite indicar que son propiedades de un objeto
-quiz. El middleware bodyparser.urlencoded(..) los analiza correctamente y genera
-el objeto req.body.quiz , si quitamos el parámetro de configuración {extended: false}
-que express-generator incluyo cuando generó el proyecto.-->
-<input class="form-control" name="quiz[pregunta]" value="<%= quiz.pregunta %>>">
 <br>
-<label>Realize una busqueda</label>
-<input class="form-control" name="quiz[respuesta]" value="<%= quiz.respuesta %>>">
-<br>
-<a href="/quizes" class="btn btn-success">Crear</a>
-<button type="submit" class="btn btn-danger">Cancelar</button>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Creacion de preguntas
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <div class="form-group">
+                        <form role="form" method="post" action="/quizes/create">
+                            <% include _form.ejs %>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>

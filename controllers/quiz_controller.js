@@ -21,7 +21,7 @@ exports.index = function(req,res){
     if(req.query.search === undefined){
         models.Quiz.findAll().then(
             function(quizes){
-                res.render('quizes/index.ejs',{ quizes: quizes })
+                res.render('quizes/index.ejs',{ quizes: quizes, errors: [] })
             }).catch(function(error){ next(error)});
 
     //si la query lleva algun valor
@@ -29,7 +29,7 @@ exports.index = function(req,res){
         var querySearch = '%' +  req.query.search + '%'
         models.Quiz.findAll({where: ["pregunta like ?", querySearch]}).then(
             function(quizes){
-                res.render('quizes/index.ejs',{ quizes: quizes })
+                res.render('quizes/index.ejs',{ quizes: quizes, errors: [] })
                 querySearch = ''
             }).catch(function(error){ next(error)});
     }
@@ -38,7 +38,7 @@ exports.index = function(req,res){
 // GET quizes/:id
 //busca en bbdd por id y manda a la vista el objeto quiz
 exports.show = function(req,res){
-        res.render('quizes/show.ejs', { quiz: req.quiz })
+        res.render('quizes/show.ejs', { quiz: req.quiz, errors: [] })
     }
 
 // GET quizes/:id/answer
@@ -49,7 +49,7 @@ exports.answer = function(req,res) {
             resultado = 'Correcto';
             color = 'panel panel-green';
         }
-        res.render('quizes/answer.ejs', {quiz: req.quiz, respuesta: resultado, color: color});
+        res.render('quizes/answer.ejs', {quiz: req.quiz, respuesta: resultado, color: color , errors: []});
     }
 
 
@@ -58,16 +58,22 @@ exports.new = function(req,res){
     var quiz = models.Quiz.build(
         {pregunta:'Pregunta', respuesta:'Respuesta' }
     );
-    res.render('quizes/new', {quiz:quiz}) //TODO: crear la vista ejs
+    res.render('quizes/new', {quiz:quiz, errors: []})
 }
 
 // POST quizes/create
 exports.create = function(req,res){
     var quiz = models.Quiz.build(req.body.quiz);
     //guarda en la bd campos pregunta y respuesta del quiz
-    quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){
-        res.redirect('/quizes');
-        //Redireccion de HTTP (url relativo) lista de preguntas
-    })
-
-}
+    quiz.validate().then(
+        function(err){
+            if(err){
+                res.render('quizes/new',{quiz: quiz, errors: err.errors});
+            } else {
+                // Salva en bbdd
+                quiz.save({fields: ["pregunta", "respuesta"]})
+                    .then(function(){res.redirect('/quizes')});
+                    //Redireccion de HTTP (url relativo) lista de preguntas
+            }
+        }
+    )}

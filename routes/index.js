@@ -6,7 +6,7 @@ var quizController = require('../controllers/quiz_controller')
 /* GET home page. */
 router.get('/', function(req, res, next) {
     //    vista INDEX
-    res.render('index', { title:  'QUIZ' });
+    res.render('index', { title:  'QUIZ', errors: [] });
 });
 
 //Autoload , si existe quizId ese parametro en la ruta
