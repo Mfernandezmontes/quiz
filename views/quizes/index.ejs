@@ -21,8 +21,7 @@
                         <thead>
                         <tr>
                             <th>Preguntas</th>
-                            <th>Fecha Creacion</th>
-                            <th>Fecha Modificacion</th>
+                            <th>tema</th>
                             <th>Accion</th>
                         </tr>
                         </thead>
@@ -30,8 +29,7 @@
                      <% for(var i=0; i<quizes.length ;i ++){ %>
                         <tr class="odd gradeX">
                             <td><%= quizes[i].dataValues.pregunta %> </td>
-                            <td><%= quizes[i].dataValues.createdAt %> </td>
-                            <td><%= quizes[i].dataValues.updatedAt %> </td>
+                            <td><%= quizes[i].dataValues.tema %> </td>
                             <td>
                                 <a class="btn btn-primary" href="/quizes/<%= quizes[i].dataValues.id %>">Ir</a>
                                 <a class="btn btn-warning" href="/quizes/<%= quizes[i].dataValues.id %>/edit">Editar</a>
