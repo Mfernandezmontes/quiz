@@ -35,6 +35,32 @@
                             <td>
                                 <a class="btn btn-primary" href="/quizes/<%= quizes[i].dataValues.id %>">Ir</a>
                                 <a class="btn btn-warning" href="/quizes/<%= quizes[i].dataValues.id %>/edit">Editar</a>
+                                <!-- Button trigger modal -->
+                                <button  class="btn btn-danger" data-toggle="modal" data-target="#myModal<%= quizes[i].dataValues.id %>">Borrar</button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal<%= quizes[i].dataValues.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Borrar pregunta</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                  ¿ Desea borrar la pregunta <%= quizes[i].dataValues.pregunta %> ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form  method="post" action="/quizes/<%= quizes[i].dataValues.id %>?_method=DELETE">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
                             </td>
                         </tr>
                     <% } %>
