@@ -27,7 +27,7 @@ exports.index = function(req,res){
     //si la query lleva algun valor
     }else{
         var querySearch = '%' +  req.query.search + '%'
-        models.Quiz.findAll({where: ["pregunta like ?", querySearch]}).then(
+        models.Quiz.findAll({where: ["pregunta like ?", querySearch], order: "pregunta ASC"}).then(
             function(quizes){
                 res.render('quizes/index.ejs',{ quizes: quizes, errors: [] })
                 querySearch = ''
@@ -78,3 +78,27 @@ exports.create = function(req,res){
             }
         })
     }
+
+//
+exports.edit = function(req,res){
+    var quiz = req.quiz;
+    res.render('quizes/edit', {quiz: quiz, errors: []});
+}
+
+
+exports.update = function(req,res){
+    req.quiz.pregunta = req.body.quiz.pregunta;
+    req.quiz.respuesta = req.body.quiz.respuesta;
+
+    req.quiz.validate().then(
+        function(err){
+            if(err){
+                res.render('quizes/edit', {quiz: req.quiz, errors: err.errors});
+            } else {
+                // Salva en bbdd
+                req.quiz.save({fields: ["pregunta", "respuesta"]})
+                    .then(function(){res.redirect('/quizes')});
+                //Redireccion de HTTP (url relativo) lista de preguntas
+            }
+        })
+}

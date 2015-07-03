@@ -32,7 +32,15 @@ router.get('/author', function(req,res,next){
 // GET quizes/new
 router.get('/quizes/new', quizController.new);
 
-//POST quizes/create
+//POST quizes/create = nos envia a la vista crear
 router.post('/quizes/create', quizController.create);
+
+// GET quizes/edit = nos envia a la vista actualizar
+router.get('/quizes/:quizId(\\d+)/edit', quizController.edit);
+
+// PUT quizes/:quizId
+router.put('/quizes/:quizId(\\d+)', quizController.update);
+
+
 
 module.exports = router;
