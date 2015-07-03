@@ -3,7 +3,10 @@
  */
 var path = require('path');
 
-var url = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/)
+var DDBB = DATABASE_URL='postgres://hvlsqlzxxqwgla:MDwUMdoTDVCc_xf-TjLq4Dffxv@ec2-54-217-202-110.eu-west-1.compute.amazonaws.com:5432/d1vutja8et6r58'
+
+
+var url = DDBB.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/)
 var DB_name   = (url[6]||null);
 var user      = (url[2]||null);
 var pwd       = (url[3]||null);
