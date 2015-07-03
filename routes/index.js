@@ -41,6 +41,8 @@ router.get('/quizes/:quizId(\\d+)/edit', quizController.edit);
 // PUT quizes/:quizId
 router.put('/quizes/:quizId(\\d+)', quizController.update);
 
+// DELETE quizes/:quizId
+router.delete('/quizes/:quizId(\\d+)', quizController.destroy)
 
 
 module.exports = router;
