@@ -6,7 +6,7 @@ var quizController = require('../controllers/quiz_controller')
 /* GET home page. */
 router.get('/', function(req, res, next) {
     //    vista INDEX
-    res.render('index', { title:  'QUIZ' });
+    res.render('index', { title:  'QUIZ', errors: [] });
 });
 
 //Autoload , si existe quizId ese parametro en la ruta
@@ -26,8 +26,13 @@ router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 // GET /autores
 router.get('/author', function(req,res,next){
     //Vista autores
-    res.render('author');
+    res.render('author', { errors: [] });
 })
 
+// GET quizes/new
+router.get('/quizes/new', quizController.new);
+
+//POST quizes/create
+router.post('/quizes/create', quizController.create);
 
 module.exports = router;
