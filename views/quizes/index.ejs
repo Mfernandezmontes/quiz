@@ -33,9 +33,8 @@
                             <td><%= quizes[i].dataValues.createdAt %> </td>
                             <td><%= quizes[i].dataValues.updatedAt %> </td>
                             <td>
-                                <form role="form" method="get" action="/quizes/<%= quizes[i].dataValues.id %>">
-                                        <button type="submit" class="btn btn-primary">Ir</button>
-                                </form>
+                                <a class="btn btn-primary" href="/quizes/<%= quizes[i].dataValues.id %>">Ir</a>
+                                <a class="btn btn-warning" href="/quizes/<%= quizes[i].dataValues.id %>/edit">Editar</a>
                             </td>
                         </tr>
                     <% } %>

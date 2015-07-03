@@ -3,10 +3,10 @@
 quiz. El middleware bodyparser.urlencoded(..) los analiza correctamente y genera
 el objeto req.body.quiz , si quitamos el parámetro de configuración {extended: false}
 que express-generator incluyo cuando generó el proyecto.-->
-<input class="form-control" name="quiz[pregunta]" value="<%= quiz.pregunta %>>">
+<input class="form-control" name="quiz[pregunta]" value="<%= quiz.pregunta %>">
 <br>
 <label>Realize una busqueda</label>
-<input class="form-control" name="quiz[respuesta]" value="<%= quiz.respuesta %>>">
+<input class="form-control" name="quiz[respuesta]" value="<%= quiz.respuesta %>">
 <br>
-<button type="submit" class="btn btn-success">Crear</button>
+<button type="submit" class="btn btn-success">Salvar</button>
 <a href="/quizes" class="btn btn-danger">Cancelar</a>
