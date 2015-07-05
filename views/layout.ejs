@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Manuel fernandez-montes baños">
 
     <title>Proyecto quiz</title>
 
@@ -40,6 +40,19 @@
             <a class="navbar-brand" href="/">QUIZ</a>
         </div>
         <!-- /.navbar-header -->
+
+        <ul class="nav navbar-top-links navbar-right">
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                    <% if(!session.user) { %>
+                        <a href="/login">Login</a>
+                    <% } else { %><a href="/logout"><%= session.user.username %> Logout</a></p>
+                    <% } %>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
 
 
         <!-- /.navbar-top-links -->
