@@ -9,22 +9,30 @@
     <div class="panel-body">
         <ul class="chat">
             <% for(index in quiz.Comments){ %>
-                <li class="left clearfix">
-                                    <span class="chat-img pull-left"> <!--right -->
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                    <div class="chat-body clearfix">
-                        <div class="header">
-                            <strong class="primary-font">Jack Sparrow</strong>
-                            <small class="pull-right text-muted">
-                                <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                            </small>
-                        </div>
-                        <p>
-                            <%= quiz.Comments[index].texto %>
-                        </p>
-                    </div>
-                </li>
+              <% if(quiz.Comments[index].publicado || session.user){ %>
+                        <li class="left clearfix">
+                            <span class="chat-img pull-left"> <!--right -->
+                                <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                            </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Jack Sparrow</strong>
+                                    <small class="pull-right text-muted">
+                                        <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
+                                    </small>
+                                </div>
+                                <p> <%= quiz.Comments[index].texto %> </p>
+                                <% if(session.user && !quiz.Comments[index].publicado){ %>
+                                <br>
+                                <div class="footer">
+                                    <a class="btn btn-success btn-sm" href="/quizes/<%= quiz.id %>/comments/<%= quiz.Comments[index].id %>/publish">Publicar</a>
+                                </div>
+                            </div>
+
+
+                        </li>
+                    <% } %>
+                <% } %>
             <% } %>
         </ul>
     </div>
@@ -32,9 +40,9 @@
     <div class="panel-footer">
         <div class="input-group">
             <form method="post" action="/quizes/<%= quiz.id %>/comments">
-                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Escriba su mensaje aqui" name="comment[texto]"/>
+                <input id="btn-input" type="text" class="form-control input-group-lg" placeholder="Escriba su mensaje aqui" name="comment[texto]" />
                 <span class="input-group-btn">
-                    <button type="submit" class="btn btn-success btn-sm" id="btn-chat">Comentar</button>
+                    <button type="submit" class="btn btn-success btn-group-lg" id="btn-chat">Comentar</button>
                 </span>
             </form>
         </div>

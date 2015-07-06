@@ -32,6 +32,8 @@
                             <td><%= quizes[i].dataValues.tema %> </td>
                             <td>
                                 <a class="btn btn-primary" href="/quizes/<%= quizes[i].dataValues.id %>">Ir</a>
+
+                                <% if(session.user){ %>
                                 <a class="btn btn-warning" href="/quizes/<%= quizes[i].dataValues.id %>/edit">Editar</a>
                                 <!-- Button trigger modal -->
                                 <button  class="btn btn-danger" data-toggle="modal" data-target="#myModal<%= quizes[i].dataValues.id %>">Borrar</button>
@@ -58,6 +60,7 @@
                                     </div>
                                     <!-- /.modal-dialog -->
                                 </div>
+                                <% } %>
                                 <!-- /.modal -->
                             </td>
                         </tr>

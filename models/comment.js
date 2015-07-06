@@ -9,6 +9,10 @@ module.exports = function(sequelize, DataTypes){
             texto :{
                 type: DataTypes.STRING,
                 validate:{ notEmpty: { msg: '-> Fata texto'}}
+            },
+            publicado :{
+                type: DataTypes.BOOLEAN,
+                defaultValue: false
             }
         })
 }

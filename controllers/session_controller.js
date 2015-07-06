@@ -1,6 +1,17 @@
 /**
  * Created by adminlocal on 5/07/15.
  */
+
+
+//Controla la sesiosn
+exports.loginRequired = function(req, res){
+    if(req.session.user){
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
 exports.new = function(req,res){
     var errors = req.session.errors || {};
     req.session.errors = {};
@@ -8,6 +19,7 @@ exports.new = function(req,res){
     res.render('sessions/new', {errors: errors});
 }
 
+//
 exports.create = function(req,res){
     var login = req.body.login;
     var password = req.body.password;
@@ -29,6 +41,7 @@ exports.create = function(req,res){
     })
 }
 
+//destruye la sesion
 exports.destroy = function(req,res){
     delete req.session.user;
     res.redirect(req.session.redir.toString());
