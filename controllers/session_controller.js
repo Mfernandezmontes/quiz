@@ -4,7 +4,7 @@
 
 
 //Controla la sesiosn
-exports.loginRequired = function(req, res){
+exports.loginRequired = function(req, res, next){
     if(req.session.user){
         next();
     } else {

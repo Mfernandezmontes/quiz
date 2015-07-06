@@ -2,7 +2,6 @@ var models = require('../models/models')
 
 //Busca los datos de quiz por id y los comentarios asociados
 exports.load = function(req,res,next,quizId){
-    console.log(quizId);
     models.Quiz.find({
                        where:{  id: quizId } ,
                       include : [{model : models.Comment }]

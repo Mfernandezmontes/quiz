@@ -4,7 +4,8 @@
 var models = require('../models/models');
 
 //Autoload comments
-exports.load = function(req,res){
+exports.load = function(req,res,next,commentId){
+    console.log(commentId);
     models.Comment.find({
         where: {
             id: commentId
@@ -53,6 +54,6 @@ exports.publish = function(req,res){
     req.comment.publicado = true;
 
     req.comment.save( {fields: ["publicado"]} )
-        .then( function(){ res.redirect('/quizes'+req.params.quizId )})
+        .then( function(){ res.redirect('/quizes/' + req.params.quizId )})
         .catch(function(error){ next(error)});
 }
