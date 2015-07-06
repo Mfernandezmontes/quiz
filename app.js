@@ -21,10 +21,21 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser('Quiz 2015'));
-app.use(session())
+app.use(cookieParser('Quiz2015'));
+app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+//La cookie caduca cada 2 minutos
+app.use(function(req, res, next) {
+    var dosMinutos = 36000 // hora
+
+    req.session.cookie.maxAge = dosMinutos;
+
+    next();
+});
+
 
 //Helper dinamicos
 app.use(function(req,res,next){
@@ -36,6 +47,8 @@ app.use(function(req,res,next){
     res.locals.session = req.session;
     next()
 })
+
+
 
 //Motor de vistas ejs
 app.set('views', path.join(__dirname, 'views'));
