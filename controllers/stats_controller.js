@@ -27,15 +27,6 @@ exports.getdata = function(req,res, next){
           })
       .then(function (cntComments) {
             stats.cntComments = cntComments;
-
-            return models.sequelize.query('SELECT count(*) AS "n" FROM "Quizzes" WHERE "id" IN (SELECT DISTINCT "QuizId" FROM "Comments")' , { type: models.sequelize.QueryTypes.SELECT} ); // El número medio de comentarios por pregunta
-          })
-      .then(function (cntCommentsAvgQuiz) {
-           if(cntCommentsAvgQuiz[0].n === 0){
-               stats.cntCommentsAvgQuiz = cntCommentsAvgQuiz[0].n
-           } else {
-               stats.cntCommentsAvgQuiz = stats.cntQuizes / cntCommentsAvgQuiz[0].n
-           }
               return models.sequelize.query('SELECT count(*) AS "n" FROM "Quizzes" WHERE "id" NOT IN (SELECT DISTINCT "QuizId" FROM "Comments")', { type: models.sequelize.QueryTypes.SELECT} ); // El número de preguntas SIN comentarios
           })
       .then(function (cntQuizesUnCommented) {
@@ -49,6 +40,9 @@ exports.getdata = function(req,res, next){
 
       .catch(function (err) { errors.push(err); })
       .finally(function () {
+
+              stats.cntCommentsAvgQuiz   = stats.cntQuizes / stats.cntComments
+
             next();
                             });
 }
