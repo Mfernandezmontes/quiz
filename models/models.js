@@ -6,7 +6,7 @@ var path = require('path');
 var DDBB = DATABASE_URL='postgres://oeehhjcwwqziiy:s5JcJVUi5aRcPT5LdTljTtxLiX@ec2-54-204-13-220.compute-1.amazonaws.com:5432/dbt2u0amlq0m8s'
 var LOCAL_BBDD =  'sqlite://:@:/'
 
-var url = LOCAL_BBDD.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/)
+var url = DDBB.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/)
 var DB_name   = (url[6]||null);
 var user      = (url[2]||null);
 var pwd       = (url[3]||null);
