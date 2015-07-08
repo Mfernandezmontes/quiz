@@ -12,7 +12,7 @@
                         <form role="form" method="get" action="/quizes/<%= quiz.id %>/answer">
                             <div class="form-group">
                                 <h2><%= quiz.pregunta %></h2>
-                                <input name="respuesta" type="text" value="Responda aqui" class="form-control">
+                                <input name="respuesta" type="text" placeholder="Responda aqui" class="form-control">
                                 <br>
                                 <button type="submit" class="btn btn-primary">Enviar</button>
                             </div>
@@ -23,7 +23,7 @@
             </div>
             <!-- /.panel-body -->
         </div>
-        <!-- /.panel -->
+        <% include ../comments/_comments.ejs %>
     </div>
     <!-- /.col-lg-12 -->
 </div>

@@ -1,7 +1,12 @@
 var models = require('../models/models')
 
+//Busca los datos de quiz por id y los comentarios asociados
 exports.load = function(req,res,next,quizId){
-    models.Quiz.find(quizId).then(
+    models.Quiz.find({
+                       where:{  id: quizId } ,
+                      include : [{model : models.Comment }]
+        }
+    ).then(
         function(quiz){
             if(quiz) {
                 req.quiz = quiz;
@@ -21,6 +26,7 @@ exports.index = function(req,res){
     if(req.query.search === undefined){
         models.Quiz.findAll().then(
             function(quizes){
+                console.log(quizes)
                 res.render('quizes/index.ejs',{ quizes: quizes, errors: [] })
             }).catch(function(error){ next(error)});
 
